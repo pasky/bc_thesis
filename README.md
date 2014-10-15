@@ -28,9 +28,8 @@ potential use for core dumps examination or enrichment of the format by
 adding the support for C++ classes.
 
 Literature:
-The C Programming Language
-The Art of UNIX Programming
-The Design and Implementation of the FreeBSD Operating System
-Solaris Internals
-D-Trace: Dynamic Tracing in Oracle Solaris, Mac OS X and FreeBSD 
-
+* The C Programming Language
+* The Art of UNIX Programming
+* The Design and Implementation of the FreeBSD Operating System
+* Solaris Internals
+* D-Trace: Dynamic Tracing in Oracle Solaris, Mac OS X and FreeBSD
