@@ -27,9 +27,29 @@ availability as debugging data even in production environments, the
 potential use for core dumps examination or enrichment of the format by
 adding the support for C++ classes.
 
-Literature:
-* The C Programming Language
-* The Art of UNIX Programming
-* The Design and Implementation of the FreeBSD Operating System
-* Solaris Internals
-* D-Trace: Dynamic Tracing in Oracle Solaris, Mac OS X and FreeBSD
+### Literature
+#### The C Programming Language
+* Authors: Brian W. Kernighan, Dennis M. Ritchie
+* Edition: 2nd
+* ISBN-13: 007-6092003106
+
+#### The Art of UNIX Programming
+* Author: Eric S. Raymond
+* Edition: 1st
+* ISBN-13: 007-6092025368
+
+#### The Design and Implementation of the FreeBSD Operating System
+* Authors: Marshall K. McKusick, George V. Neville-Neil, Robert N. M. Watson  
+* Edition: 2nd
+* ISBN-13: 978-0321968975
+
+#### Solaris Internals
+* Authors: Richard McDougall, Jim Mauro
+* Edition: 2nd
+* ISBN-13: 978-0131482098
+
+#### D-Trace: Dynamic Tracing in Oracle Solaris, Mac OS X and FreeBSD
+* Authors: Brendan Gregg, Jim Mauro
+* Edition: 1st
+* ISBN-13: 978-0132091510
+
