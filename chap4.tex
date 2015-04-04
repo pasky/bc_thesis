@@ -47,6 +47,28 @@ approach by using the {\tt libctf} described in the Chapter 2. Following
 sections describe and discuss the implementation details.
 
 \section{Kernel-space adaptation}
+By utilising the {\tt libctf} in the FreeBSDs kernel debugger, we place an
+additional requirement on its availability. Due to security and usability
+issues, {\tt libc} functions such as {\tt strlen} or {\tt malloc} are not
+available in the kernel mode, but rather similar functions acting as their
+replacement must be used. Notable change is in the {\tt malloc} function, which
+expects two additional arguments. While its obligatory to have two builds of
+the library - one using the {\tt libc} version of functions and one using the
+kernel substitute - it is preferred to have an unified code-base. To achieve
+this goal, a set of C pre-processor macros was created that are expanded to
+different functions depending on the availability of the {\tt \_KERNEL} macro.
+
+An example of the {\tt \_CTF\_STRDUP} implementation:
+\begin{verbatim}
+#ifdef _KERNEL
+	#define _CTF_STRDUP(string) strdup(string, M_CTF)
+#else
+	#define _CTF_STRDUP(string) strdup(string)
+#endif
+\end{verbatim}
+
+linker ctf get
+
 \section{Type lookup}
 \section{Pretty printing}
 \section{Data structure speculation}
