@@ -1,19 +1,102 @@
 \chapter{Compact C Type Format}
 
-\section{History and motivation}
+\section{Introduction}
+The Compact C Type Format (CTF) is a debugging information format targeted on
+the type system of the C99 [referencia!] language. It was conceived at Sun
+Microsystems while working on the Modular Debugger and adopted by other
+significant tools onwards. One central design goal of the CTF format is
+contained in its name: compactness. The format utilises all kinds of
+techniques, such as bit fields, ZIP compression [referencia!] or deduplication,
+to achieve the most minimal form. This thesis discusses only the second version
+of the format, since it is the only one used in production and contains more
+up-to-date internals with respect to the modern C language specification.
+
 \subsection{Contemporary usage}
+Currently, the only two applications using the CTF data set are DTrace and the
+Modular Debugger. The reason of the low adoption of the technology is caused by
+insufficient documentation of the format, which this thesis aims to solve, and
+multiple incoherent implementations with private unstable APIs and restrictive
+licenses. This too is being solved as the part of this thesis.
+
 \section{Format description}
+Following sections will describe the CTF format and discuss the possible
+improvement points that could be made in future versions of the format.
+
 \subsection{ELF section}
+As with all debugging information, the CTF data set is stored in the executable
+file that it refers to. Since CTF aims to provide debugging information on all
+Unix-like systems, it is designed to be using alongside the ELF binary format.
+The data is stored in the section labeled \texttt{.SUNW\_ctf}.
+
 \subsection{Header}
-\subsection{Labels and uniquification}
-\subsection{Function objects}
-\subsection{Data objects}
+The CTF section begins with a preamble that indicates three information: 
+
 \subsection{Types}
-\subsection{Variable data}
+The type section is the heart of the format as it stores all type meta-data and
+is referenced by other CTF sections - symbol types . It also contains other
+type related information, such as type qualifiers, pointers, forward
+declarations or padding structures.
+
+Every type or a type related object contains a unique consecutive 16-bit ID
+that is used as a reference. This poses a limitation of maximum 65536 types per
+executable. Usually the type section is the largest of all CTF sections and
+increasing the bit width of the ID property will enlarge the data set in a
+significant way. On the other hand, as large single executables, such as the
+kernel image or the Mozilla Firefox browser [referencia!], the number of types
+used is steadily increasing.
+
+[tabulka o tom ako rastie pocet typov na roznych kerneloch a ze kedy to
+presiahne 65k]
+
+Possible solution to the problem would be denoting the bit width of the ID
+property in the CTF header or in a separate table section header. This in turn
+would allow a great amount of elasticity across the spectrum of applications. 
+
+[kolko base modulov ma menej nez 255 typov?]
+
+Other meta-data stored about each type is the \texttt{kind} of the type, which
+is a 4-bit integer. This poses a limitation of maximum 16 different
+\texttt{kind}s of types. Currently, the second version of the CTF format has
+assigned the first XXXXXXXXXXXX kinds with the remaining XXXXXXXXX reserved for
+the future use. The mapping of the \texttt{kind} values can be found in the
+\texttt{src/type/kind.h} file.
+
+As the C language advances, it comprises of increasing number
+of base types (C11 [referencia!] introduced XXXXXXXXXXXX new base types) and
+CTF will have to adapt. The same suggested approach of configurable bit width
+of the \texttt{kind} property might solve this issue and future-proof the
+format.
+
+Each following subsections describes one of the types or type related objects:
+
 \subsubsection{Integer number}
+
 \subsubsection{Floating point number}
+
 \subsubsection{Enumeration}
+
 \subsubsection{Structure and union}
+
 \subsubsection{Function}
-\subsection{Strings}
+
+\subsubsection{New type definition}
+
+\subsection{Function objects}
+
+\subsection{Data objects}
+
+\subsection{String table}
+The string table ELF section \texttt{strtab} is considered to be a crucial
+source of insight information into the binary as it stores names of all
+symbols. CTF aims at the lowest disk usage possible and therefore the internal
+string section that resides in the main CTF section is using indices into the
+top-level ELF \texttt{strtab} in case there should be the same string stored in
+both.  All internal data structures that store the name of any object do not
+contain the actual data itself, but a mere reference into one of the string
+tables (either the top-level ELF, or the internal CTF). Which table to use
+is denoted as the first bit of the index number. It is not advised to remove or
+alter the top-level ELF string table without editing the CTF data afterwards,
+as it may (and probably will) introduce data errors.
+
+\subsection{Labels and uniquification}
 
