@@ -1,4 +1,4 @@
-Multiplatform CTF implementation and use in the FreeBSD kernel debugger
+Multiplatform CTF implementation and use in UNIX-like operating systems
 -----------------------------------------------------------------------
 
 The goal of the thesis is to provide an open-source implementation of
@@ -11,21 +11,26 @@ worlds included.
 Functionality and correctness of the library will be verified by unit
 testing of its core components with sufficient code coverage.  Part of
 the CTF tool-chain is also a set of command-line utilities such as
-one-way conversion from DWARF to CTF, merging two CTF datasets in one
+one-way conversion from DWARF to CTF, merging two CTF data sets in one
 (while creating a parent-child relationship), printing of the CTF data
 and computing statistics.
 
-An ultimate demonstration of the capabilities of the implementation is a
+A demonstration of the capabilities of the implementation is a
 feature addition to the FreeBSD kernel debugger DDB - pretty printing
 for the data structures used in the currently loaded kernel image. A
 vital point is the comparison to other approaches that would aim to
 solve this problem.
 
-Furthermore, the thesis should discuss and argue about future
-possibilities of the technology, its use in compilers, system-wide
-availability as debugging data even in production environments, the
-potential use for core dumps examination or enrichment of the format by
-adding the support for C++ classes.
+Another significant utilisation of the CTF data set is displayed in the
+software component Type-aware KVM Library that builds on top of the standard
+kernel virtual memory library to provide a type-safe interface to reading data
+from a live kernel or a core dump originating from a possibly different
+processor architecture.
+
+The thesis will also investigate and discuss at least one other
+direction of extending the technology - e.g. its use in compilers, system-wide
+availability as debugging data even in production environments or enrichment of
+the format by adding the support for C++ classes.
 
 ### Literature
 #### The C Programming Language
