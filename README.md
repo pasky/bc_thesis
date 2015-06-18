@@ -1,36 +1,33 @@
 Multiplatform CTF implementation and use in UNIX-like operating systems
 -----------------------------------------------------------------------
 
-The goal of the thesis is to provide an open-source implementation of
-the Compact C Type Format (CTF) in the form of a C99 library with an
-appropriate free documentation of both the format itself and the
-corresponding API. A strong emphasis is being placed on the
-multiplatform availability of the library - BSD, illumos and Linux
-worlds included.
+Compact C Type Format (CTF) is a light-weight alternative to DWARF for
+storing metadata on symbols and types in ELF binary files.  CTF has seen
+some usage in UNIXes like Solaris and BSD but has no open implementation,
+poor or none documentation and very limited applications so far.
 
-Functionality and correctness of the library will be verified by unit
-testing of its core components with sufficient code coverage.  Part of
-the CTF tool-chain is also a set of command-line utilities such as
-one-way conversion from DWARF to CTF, merging two CTF data sets in one
-(while creating a parent-child relationship), printing of the CTF data
-and computing statistics.
+The goal of this thesis is to provide an open-source implementation of
+the CTF in the form of a multi-platform C99 library
+and properly document both the CRF and the corresponding new API.
+The library should also be accompanied by some command-line tools such as
+one-way conversion from DWARF to CTF, merging two CTF data sets in one,
+printing of the CTF data, or computing statistics.
 
-A demonstration of the capabilities of the implementation is a
-feature addition to the FreeBSD kernel debugger DDB - pretty printing
-for the data structures used in the currently loaded kernel image. A
-vital point is the comparison to other approaches that would aim to
-solve this problem.
+Besides the work on a core CTF library, the thesis should also show some
+applications, with comparison to other possible approaches:
 
-Another significant utilisation of the CTF data set is displayed in the
-software component Type-aware KVM Library that builds on top of the standard
-kernel virtual memory library to provide a type-safe interface to reading data
-from a live kernel or a core dump originating from a possibly different
-processor architecture.
+  * An extension to the FreeBSD kernel debugger DDB, pretty printing
+    for the data structures used in the currently loaded kernel image.
+
+  * Type-aware KVM Library that builds on top of the BSD standard
+    kernel virtual memory library to provide a type-safe interface to read data
+    from a live kernel or a core dump (possibly originating from a different
+    processor architecture).
 
 The thesis will also investigate and discuss at least one other
-direction of extending the technology - e.g. its use in compilers, system-wide
+direction of extending the existing technology - e.g. its use in compilers, system-wide
 availability as debugging data even in production environments or enrichment of
-the format by adding the support for C++ classes.
+the format by adding support for C++ classes.
 
 ### Literature
 #### The C Programming Language
