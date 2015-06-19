@@ -3,10 +3,11 @@ Multiplatform CTF implementation and use in UNIX-like operating systems
 
 Compact C Type Format (CTF) is a light-weight alternative to DWARF for
 storing metadata on symbols and types in ELF binary files.  CTF has seen
-some usage in UNIXes like Solaris and BSD but has no open implementation,
-poor or none documentation and very limited applications so far.
+some usage in UNIXes like Solaris and the BSDs, but the lack of a highly
+permissive license, poor documentation and private unstable API prevent
+it from a wider adaptation.
 
-The goal of this thesis is to provide an open-source implementation of
+The goal of this thesis is to provide a 2-clause BSD licenced implementation of
 the CTF in the form of a multi-platform C99 library
 and properly document both the CRF and the corresponding new API.
 The library should also be accompanied by some command-line tools such as
