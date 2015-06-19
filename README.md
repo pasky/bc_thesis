@@ -8,7 +8,7 @@ permissive license, poor documentation and private unstable API prevent
 it from a wider adaptation.
 
 The goal of this thesis is to provide a 2-clause BSD licenced implementation of
-the CTF in the form of a multi-platform C99 library
+the CTF in the form of a multi-platform C library
 and properly document both the CRF and the corresponding new API.
 The library should also be accompanied by some command-line tools such as
 one-way conversion from DWARF to CTF, merging two CTF data sets in one,
