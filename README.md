@@ -9,7 +9,7 @@ it from a wider adaptation.
 
 The goal of this thesis is to provide a 2-clause BSD licenced implementation of
 the CTF in the form of a multi-platform C library
-and properly document both the CRF and the corresponding new API.
+and properly document both the CTF and the corresponding new API.
 The library should also be accompanied by some command-line tools such as
 one-way conversion from DWARF to CTF, merging two CTF data sets in one,
 printing of the CTF data, or computing statistics.
@@ -18,7 +18,7 @@ Besides the work on a core CTF library, the thesis should also show some
 applications, with comparison to other possible approaches:
 
   * An extension to the FreeBSD kernel debugger DDB, pretty printing
-    for the data structures used in the currently loaded kernel image.
+    the data structures used in the currently loaded kernel image.
 
   * Type-aware KVM Library that builds on top of the BSD standard
     kernel virtual memory library to provide a type-safe interface to read data
